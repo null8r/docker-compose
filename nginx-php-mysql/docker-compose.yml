@@ -11,6 +11,7 @@ services:
     depends_on:
       - php
       - db
+    restart: always
 
   php:
     build: ./php
@@ -20,6 +21,7 @@ services:
       - ./php/log:/var/log/php
     depends_on:
       - db
+    restart: always
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -33,6 +35,7 @@ services:
       - PMA_HOST=db
       - PMA_USER=root
       - PMA_PASSWORD=password
+    restart: always
 
   db:
     image: mysql:5.7
@@ -46,3 +49,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
+    restart: always

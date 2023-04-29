@@ -1,0 +1,35 @@
+version: '3'
+services:
+  php:
+    image: php:7.2-apache
+    volumes:
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./html/:/var/www/html
+    ports:
+      - 8888:80
+
+  mysql:
+    image: mysql:5.7
+    #platform: linux/x86_64
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mysql
+      - MYSQL_USER=n8r
+      - MYSQL_PASSWORD=password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=n8r
+      - PMA_PASSWORD=password
+    links:
+      - mysql
+    ports:
+      - 8899:80
+

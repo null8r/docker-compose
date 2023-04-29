@@ -2,7 +2,6 @@ version: '3'
 services:
   nginx:
     image: nginx:latest
-    container_name: nginx-container
     ports:
       - 8888:80
     volumes:
@@ -15,7 +14,6 @@ services:
 
   php:
     build: ./php
-    container_name: php-container
     volumes:
       - ./www/html:/var/www/html
       - ./php/log:/var/log/php
@@ -25,7 +23,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin-container
     ports:
       - 8889:80
     depends_on:
@@ -39,7 +36,6 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: mysql-container
     ports: 
       - 13306:3306
     volumes:

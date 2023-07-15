@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web2:
+    image: nginx:latest
+    volumes:
+      - ./www/html:/usr/share/nginx/html
+    environment:
+      VIRTUAL_HOST: 'web2.local'
+
+networks:
+  default:
+    external: true
+    name: proxy-net
